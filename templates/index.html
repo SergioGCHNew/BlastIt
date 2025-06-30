@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Analizador 16S</title>
+</head>
+<body>
+  <h1>Sube tus archivos .seq</h1>
+  <form method="POST" enctype="multipart/form-data">
+    <input type="file" name="files" multiple required>
+    <button type="submit">Procesar</button>
+  </form>
+
+  {% if resultados %}
+    <h2>Resultados</h2>
+    <table border="1">
+      <tr>
+        <th>Archivo</th>
+        <th>ID</th>
+        <th>% Identidad</th>
+        <th>Longitud</th>
+        <th>Referencia</th>
+        <th>Organismo</th>
+      </tr>
+      {% for r in resultados %}
+      <tr>
+        <td>{{ r.archivo }}</td>
+        <td>{{ r.id }}</td>
+        <td>{{ r.identidad }}</td>
+        <td>{{ r.longitud }}</td>
+        <td>{{ r.ref }}</td>
+        <td>{{ r.organismo }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  {% endif %}
+</body>
+</html>
