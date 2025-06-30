@@ -1,2 +1,5 @@
 db/taxonomy4blast.sqlite3 filter=lfs diff=lfs merge=lfs -text
 db/taxdb.btd filter=lfs diff=lfs merge=lfs -text
+db/*.btd filter=lfs diff=lfs merge=lfs -text
+db/*.sqlite3 filter=lfs diff=lfs merge=lfs -text
+db/*.btindex filter=lfs diff=lfs merge=lfs -text
