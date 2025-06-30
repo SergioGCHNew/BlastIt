@@ -9,22 +9,111 @@ HTML = """
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>BLAST Local con Flask</title>
+  <title>Blast It</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <style>
-    body { padding-top: 40px; background: #f8f9fa; }
+    /* Fondo con degradado suave */
+    body {
+      padding-top: 50px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      min-height: 100vh;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #333;
+    }
+    /* Contenedor blanco con sombra suave y borde redondeado */
     .container {
       max-width: 900px;
-      background: white;
-      padding: 30px;
+      background: #fff;
+      padding: 40px 50px;
+      border-radius: 15px;
+      box-shadow: 0 12px 30px rgba(102, 126, 234, 0.3);
+    }
+
+    /* Título centrado, grande y con color */
+    h1 {
+      font-weight: 700;
+      font-size: 2.8rem;
+      color: #5a4cae;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    /* Etiqueta de input */
+    label.form-label {
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #5a4cae;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Botón principal */
+    button.btn-primary {
+      background: linear-gradient(90deg, #667eea, #764ba2);
+      border: none;
+      font-weight: 600;
+      font-size: 1.2rem;
+      padding: 12px 0;
+      transition: background 0.3s ease;
+      border-radius: 8px;
+    }
+    button.btn-primary:hover {
+      background: linear-gradient(90deg, #5a4cae, #5e3b8a);
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.5);
+    }
+
+    /* Tabla estilizada */
+    table {
       border-radius: 10px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    }
+    thead.table-dark {
+      background: linear-gradient(90deg, #5a4cae, #764ba2);
+      color: #fff;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    tbody tr:hover {
+      background-color: #f0e9ff;
+      transition: background-color 0.25s ease;
+    }
+    tbody td {
+      vertical-align: middle;
+      font-size: 0.95rem;
+      color: #4a4a4a;
+    }
+
+    /* Mensaje info */
+    .alert-info {
+      background-color: #e0e7ff;
+      color: #4f46e5;
+      font-weight: 600;
+      text-align: center;
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 4px 10px rgba(102, 126, 234, 0.2);
+      margin-top: 20px;
+    }
+
+    /* Input file personalizado */
+    input[type="file"] {
+      cursor: pointer;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      padding: 8px 12px;
+      transition: border-color 0.3s ease;
+    }
+    input[type="file"]:focus {
+      outline: none;
+      border-color: #764ba2;
+      box-shadow: 0 0 5px #764ba2;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1 class="mb-4 text-center">BLAST Local con Flask</h1>
+    <h1>Blast It</h1>
     <form method="post" enctype="multipart/form-data" class="mb-4">
       <div class="mb-3">
         <label for="seqfiles" class="form-label">Sube uno o más archivos <code>.seq</code></label>
@@ -42,8 +131,8 @@ HTML = """
     </form>
 
     {% if resultados %}
-      <h3>Resultados:</h3>
-      <table class="table table-striped table-bordered">
+      <h3 class="mb-3" style="color: #5a4cae;">Resultados:</h3>
+      <table class="table table-striped table-bordered align-middle">
         <thead class="table-dark">
           <tr>
             <th>Archivo</th>
@@ -74,6 +163,7 @@ HTML = """
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
 """
 
 @app.route("/", methods=["GET", "POST"])
